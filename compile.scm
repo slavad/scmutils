@@ -40,7 +40,7 @@ USA.
     (lambda ()
       (for-each (lambda (subdir)
 		  (with-working-directory-pathname subdir
-		    (lambda () (load "compile"))))
+		    (lambda () (load "compile.scm"))))
 		'("general"
 		  "kernel"
 		  "simplify"
@@ -53,7 +53,7 @@ USA.
     (lambda ()
       (for-each (lambda (subdir)
 		  (with-working-directory-pathname subdir
-		    (lambda () (load "compile"))))
+		    (lambda () (load "compile.scm"))))
 		'("solve"
 		  "units"
 		  "mechanics"
