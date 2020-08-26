@@ -10,7 +10,7 @@ clean:
 	find . -name "*.bin" -type f -delete
 	find . -name "*.ext" -type f -delete
 
-# check total number of complited bins with the original distor
+# check total number of complied bins with the original distor
 # add load and complile files
 # don't forget to check that load and compile files include
 # all files from the dir
