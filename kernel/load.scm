@@ -55,6 +55,7 @@ USA.
 
 ;;; Support for loading types.
 (load "types"    scmutils-base-environment)
+;;(load "/usr/local/scmutils/src/kernel/types.scm.~21~"    scmutils-base-environment)
 
 (define (diff-memoize-1arg f) f)
 (define (diff-memoize-2arg f) f)
@@ -70,9 +71,11 @@ USA.
 (load "deriv"    scmutils-base-environment)
 (load "operator" scmutils-base-environment)
 (load "function" scmutils-base-environment)
+;;; The following gives no advantage...
+;;;(load "function-memoized" scmutils-base-environment)
 
 (load "numbers"  scmutils-base-environment)
-;;; The following two need to be loaded after NUMBERS,
+;;; The following two need to be loaded after NUMBERS, 
 ;;;  because they use MAKE-NUMERICAL-COMBINATION.
 (load "vectors"  scmutils-base-environment)
 (load "structs"  scmutils-base-environment)
@@ -86,8 +89,6 @@ USA.
 
 ;;; must come after numsymb
 (load "heuristic" scmutils-base-environment)
-
-(load "litfun"   scmutils-base-environment)
 
 ;;; Sets up generic environment
 (load "genenv"   scmutils-base-environment)

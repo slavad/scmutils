@@ -27,15 +27,11 @@ USA.
 (load "weak" scmutils-base-environment)
 (load "memoize" scmutils-base-environment)
 (load "hashcons" scmutils-base-environment)
-(load "canonicalizer" scmutils-base-environment)
+;(load "canonicalizer" scmutils-base-environment)
 
 (load "resource-limit" scmutils-base-environment)
 
 ;;;(environment-assign! scmutils-base-environment '*auditing-memoizers* #f)
-
-(load "let-macro" scmutils-base-environment)
-(load "comutils" scmutils-base-environment)
-(load "equation-style-unifier" scmutils-base-environment)
 
 (load "stack-queue" scmutils-base-environment)
 (load "ambsch" scmutils-base-environment)
