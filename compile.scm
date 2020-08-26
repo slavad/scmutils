@@ -35,6 +35,7 @@ USA.
 (load "general/comutils")
 (load "general/let-macro")
 
+
 (with-symbols-canonicalized
     (lambda ()
       (for-each (lambda (subdir)
@@ -57,6 +58,7 @@ USA.
 		  "units"
 		  "mechanics"
 		  "calculus"))))
+
 (if (not (file-processed? "./patch"
 			  "scm"
 			  (compiler:compiled-code-pathname-type)))
