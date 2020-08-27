@@ -27,7 +27,7 @@ USA.
 
 (load "open" scmutils-base-environment)
 
-(load "gray" scmutils-base-environment)
+;;(load "gray" scmutils-base-environment)
 
 
 (load "print" scmutils-base-environment)
