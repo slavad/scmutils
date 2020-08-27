@@ -46,6 +46,8 @@ USA.
 
 (load "gjs-cselim" scmutils-base-environment)
 
+(load "equation-style-unifier" scmutils-base-environment)
+
 (in-scmutils-directory "./infix"
            (lambda ()
        (load "load" scmutils-base-environment)))

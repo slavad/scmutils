@@ -61,6 +61,8 @@ USA.
 (load "rule-syntax" scmutils-base-environment)
 (load "matcher" scmutils-base-environment)
 (load "rule-simplifier" scmutils-base-environment)
+(load "unifier-rule-simplifier" scmutils-base-environment)
+(load "expand-nary" scmutils-base-environment)
 (load "rules" rule-environment)
 
 (for-each (lambda (name)
@@ -92,6 +94,7 @@ USA.
             exp-expand
             exp-contract
             canonicalize-partials
+            expand-nary
 
             trig->sincos
             sincos->trig
@@ -115,7 +118,7 @@ USA.
 	    trigcontract
 
             complex-rules
-            
+
             divide-numbers-through
 
 	    ;; Boolean simplifier controls.

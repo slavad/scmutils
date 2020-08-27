@@ -24,7 +24,7 @@ USA.
 
 |#
 
-(load "memoize" scmutils-base-environment)
+(load "parse-algebraic-expressions" scmutils-base-environment)
 (load "mit-scheme" scmutils-base-environment)
 (load "parser-tokens" scmutils-base-environment)
 (load "parser-utils" scmutils-base-environment)

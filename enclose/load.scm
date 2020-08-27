@@ -33,5 +33,3 @@ USA.
 (load "jinx-cselim" scmutils-base-environment)
 
 (load "enclose" scmutils-base-environment)
-
-(load "opaque" scmutils-base-environment)

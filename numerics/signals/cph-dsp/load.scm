@@ -29,8 +29,4 @@ USA.
 
 (load "fft" user-initial-environment)
 ;;(load "filter" user-initial-environment)
-;;(load "kaiser")
-;;(load "parks-mcclellan")
-;;(load "plot")
-;;(load "sound")
 (load "white" user-initial-environment)
