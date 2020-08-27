@@ -10,6 +10,4 @@ clean:
 	find . -name "*.ext" -type f -delete
 	find . -name "*.com" -type f -delete
 
-# check that all bci files from the origianl
-# distro are here, check for extra bci as well
 # recheck load files: they must load all bci files
