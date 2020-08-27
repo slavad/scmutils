@@ -25,9 +25,25 @@ USA.
 |#
 
 (for-each cf-conditionally
-	  '( "units"
-	     "system"
-	     "with-units"
-	     "SI-units"
-       "hms-dms-radians"
-	     ))
+	  '(
+	    "rotation"
+	    "universal"
+	    "Lagrangian"
+	    "action"
+	    "Lagrangian-evolution"
+	    "gamma-bar"
+	    "Noether"
+	    "rigid"
+	    "Hamiltonian"
+	    "Routhian"
+	    "sections"
+	    "qualitative"
+	    "point-transformation"
+	    "canonical"
+	    "symplectic"
+	    "dual"
+	    "time-varying"
+	    "time-evolution"
+	    "Lie-transform"
+	    "pendulum"
+	    ))
