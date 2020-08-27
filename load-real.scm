@@ -30,7 +30,7 @@ USA.
 
 (ge user-initial-environment)
 
-(add-subsystem-identification! "ScmUtils" '("Mechanics" "Summer 2015"))
+(add-subsystem-identification! "ScmUtils" '("Mechanics" "Summer 2020"))
 
 (define scmutils-base-environment user-initial-environment)
 
@@ -117,7 +117,7 @@ USA.
 
 (in-scmutils-directory "./units"
 		       (lambda ()
-			 (load "load" scmutils-base-environment)))      
+			 (load "load" scmutils-base-environment)))
 
 (in-scmutils-directory "./mechanics"
 		       (lambda ()
@@ -144,7 +144,7 @@ USA.
 			       user-generic-environment)))
 
 
-;;; To fix bugs, e.g. in X11graphics 
+;;; To fix bugs, e.g. in X11graphics
 
 (in-scmutils-directory "."
 		       (lambda ()
