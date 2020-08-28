@@ -129,16 +129,18 @@ USA.
   (set! hook/repl-write saved-repl-write))
 
 
-(define edwin/write-result
-  (access operation/write-result (->environment '(edwin inferior-repl))))
+; (define edwin/write-result
+;   (access operation/write-result (->environment '(edwin inferior-repl))))
 
-(define edwin/transcript-write
-  (access transcript-write (->environment '(edwin inferior-repl))))
+; (define edwin/transcript-write
+;   (access transcript-write (->environment '(edwin inferior-repl))))
 
-(define (edwin-port? port)
-  (eq? (port/operation port 'write-result)
-       edwin/write-result))
+; (define (edwin-port? port)
+;   (eq? (port/operation port 'write-result)
+;        edwin/write-result))
 
+;; disable edwin stuff
+(define (edwin-port? port) #f )
 
 (define (display-expression)
   (if (or (undefined-value? (*last-expression-printed*))
