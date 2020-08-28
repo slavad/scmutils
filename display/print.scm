@@ -192,13 +192,15 @@ USA.
   ;; (display "#;\n")
   (pp (*last-expression-printed*)))
 
-
-(define (print-expression-tex expr #!optional simplifier)
+(define (get-expression-tex expr #!optional simplifier)
   (if (default-object? simplifier)
       (set! simplifier simplify))
   (prepare-for-printing expr simplifier)
   ;; (display "#;\n")
-  (display (no-boxit-tex (*last-expression-printed*))))
+  (no-boxit-tex (*last-expression-printed*)))
+
+(define (print-expression-tex expr #!optional simplifier)
+  (display (get-expression-tex expr simplifier)))
 
 
 (define pe print-expression)
