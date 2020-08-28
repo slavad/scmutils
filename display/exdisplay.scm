@@ -909,13 +909,13 @@ USA.
 	  (glue-horiz (interpolate " \\cr \\cr " separated-rows))))
     #;
     (glue-horiz
-     (list "\\left\\{ \\matrix{ "
+     (list "\\left\\{ \\begin{matrix} "
 	   separated-columns
-	   "} \\right\\}"))
+	   "\\end{matrix} \\right\\}"))
     (glue-horiz
-     (list "\\left\\lgroup \\matrix{ "
+     (list "\\left\\lgroup \\begin{matrix} "
 	   separated-columns
-	   "} \\right\\rgroup"))))
+	   "\\end{matrix} \\right\\rgroup"))))
 
 (define (tex:unparse-up uptable matrix-list)
   (let* ((displaystyle-rows
@@ -1387,17 +1387,17 @@ USA.
 )       ;end let()
 
 
-;;;(define left-up-delimiter "\\left \\lceil \\matrix{ ")
-;;;(define right-up-delimiter "} \\right \\rceil")
-;;;(define left-down-delimiter "\\left \\lfloor \\matrix{ ")
-;;;(define right-down-delimiter "} \\right \\rfloor")
+;;;(define left-up-delimiter "\\left \\lceil \\begin{matrix} ")
+;;;(define right-up-delimiter "\\end{matrix} \\right \\rceil")
+;;;(define left-down-delimiter "\\left \\lfloor \\begin{matrix} ")
+;;;(define right-down-delimiter "\\end{matrix} \\right \\rfloor")
 
 
-(define left-up-delimiter "\\left( \\matrix{ ")
-(define right-up-delimiter "} \\right)")
+(define left-up-delimiter "\\left( \\begin{matrix} ")
+(define right-up-delimiter "\\end{matrix} \\right)")
 
-(define left-down-delimiter "\\left[ \\matrix{ ")
-(define right-down-delimiter "} \\right]")
+(define left-down-delimiter "\\left[ \\begin{matrix} ")
+(define right-down-delimiter "\\end{matrix} \\right]")
 
 
 #|
