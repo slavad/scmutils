@@ -147,7 +147,7 @@ USA.
         numerical-environment scmutils-base-environment))
 
 (define (prepare-for-printing expr simplifier)
-  (set! *last-expression-printed* 
+  (set! *last-expression-printed*
 	(cond ((unsimplifiable? expr)
 	       (lambda () expr))
 	      ((and (not (with-units? expr))
@@ -192,7 +192,17 @@ USA.
   ;; (display "#;\n")
   (pp (*last-expression-printed*)))
 
+
+(define (print-expression-tex expr #!optional simplifier)
+  (if (default-object? simplifier)
+      (set! simplifier simplify))
+  (prepare-for-printing expr simplifier)
+  ;; (display "#;\n")
+  (display (no-boxit-tex (*last-expression-printed*))))
+
+
 (define pe print-expression)
+(define pet print-expression-tex)
 (define se show-expression)
 
 
