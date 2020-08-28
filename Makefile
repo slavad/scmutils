@@ -9,5 +9,3 @@ clean:
 	find . -name "*.bin" -type f -delete
 	find . -name "*.ext" -type f -delete
 	find . -name "*.com" -type f -delete
-
-# recheck load files: they must load all bci files
