@@ -1,9 +1,9 @@
 .PHONY: all clean clean-all
 
-all:
+bci:
 	mit-scheme --quiet < compile.scm
 
-band:
+all: bci
 	mit-scheme --quiet < compile-band.scm
 
 clean-all: clean
