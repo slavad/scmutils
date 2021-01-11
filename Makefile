@@ -1,11 +1,7 @@
 .PHONY: all clean clean-all
 
-bci:
+all:
 	mit-scheme --quiet < compile.scm
-
-all: bci
-	mit-scheme --quiet < compile-band.scm
-
 clean-all: clean
 	find . -name "*.bci" -type f -delete
 clean:
