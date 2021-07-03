@@ -11,5 +11,5 @@ EOF
 }
 
 declare -r TARGET=$(get-target-directory)
-rm -f "${TARGET}"mechanics.com
+rm -f "${TARGET}"${1}.com
 rm -rf "${TARGET}"scmutils

@@ -25,33 +25,6 @@ USA.
 
 |#
 
-#| -*- Scheme -*-
-
-Copyright (c) 1987, 1988, 1989, 1990, 1991, 1995, 1997, 1998,
-              1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
-              2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014,
-              2015, 2016, 2017, 2018, 2019, 2020
-            Massachusetts Institute of Technology
-
-This file is part of MIT scmutils.
-
-MIT scmutils is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or (at
-your option) any later version.
-
-MIT scmutils is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with MIT scmutils; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
-USA.
-
-|#
-
 ;;;; DISPLAY-EXPRESSION
 
 ;;; This is a package of expression display programs for Scmutils.
@@ -84,17 +57,17 @@ USA.
 ;;; ^{f + {{g}\over {h}}}}}$$
 
 ;;; (2d-show-expression test)
-;;;                Df(b)        
-;;;     alpha + ------------    
-;;;             alpha + beta    
+;;;                Df(b)
+;;;     alpha + ------------
+;;;             alpha + beta
 ;;; ----------------------------
 ;;;                            g
 ;;;                        f + -
 ;;;          /         2 \     h
-;;;         |  a + c + -  |     
-;;; x + y   |          x  |     
-;;; ----- + |  ---------  |     
-;;;   2      \    d e    /      
+;;;         |  a + c + -  |
+;;; x + y   |          x  |
+;;; ----- + |  ---------  |
+;;;   2      \    d e    /
 
 ;;; Unlike Jaffer's code, this version does not handle line breaks.  We
 ;;; can extend it some day.
@@ -121,6 +94,7 @@ USA.
 (define 2d-show-expression)
 (define expression->tex-string)
 (define display-tex-string)
+(define no-boxit-tex)
 
 (define last-tex-string-generated)
 
@@ -349,7 +323,7 @@ USA.
 ;;; The voffset will be the voffset of the first box.  (I.e., the
 ;;; first box will stay at the same level, and the other boxes will be
 ;;; appended below it.)  The binding power will be the binding power
-;;; of the first box. 
+;;; of the first box.
 
 (define (glue-vert boxes)
   (if (null? (cdr boxes))
@@ -366,9 +340,9 @@ USA.
      new-width
      (box-binding-power box1)
      (append (box-lines nbox1) (box-lines nbox2)))))
-    
 
-;;; Glue-above is similar to glue-below below, except that the 
+
+;;; Glue-above is similar to glue-below below, except that the
 ;;; v-offset of the top line in box2 remains
 ;;; what it was, and box1 is glued in above it.
 
@@ -396,7 +370,7 @@ USA.
 	      width
 	      (box-binding-power box)
 	      (map (lambda (line)
-		     (make-line 
+		     (make-line
 		      (append pad-left
 			      (line-elements line)
 			      pad-right)))
@@ -460,7 +434,7 @@ USA.
 	      max-bp
 	      lines)))
 
-;;; List utility: 
+;;; List utility:
 ;;;Interpolate element between all items in the list
 
 (define (interpolate element list)
@@ -473,13 +447,13 @@ USA.
 ;;; Binding powers of elements, and required binding powers.  An element
 ;;; on the left will be parenthesized if it is used in a context on the
 ;;; right that appears above it in the table.
-;;; 
+;;;
 ;;; max-bp                    200
 ;;; one-char symbol           200
 ;;; parenthesized thing       200
-;;; 
+;;;
 ;;; n-char symbol             190        product set off with dots in Tex
-;;; 
+;;;
 ;;; subscripted               140
 ;;; superscripted             140
 ;;; derivative                140
@@ -489,7 +463,7 @@ USA.
 ;;;                                      base of exponentiation  140
 ;;;                                      item to be subscripted 140
 ;;;                                      subscript 140
-;;;                                      item to be differentiated 140                
+;;;                                      item to be differentiated 140
 ;;; expt                      130
 ;;; application               130
 ;;;                                      operator of application 130
@@ -865,7 +839,7 @@ USA.
 	 (matrix-with-lengthened-rows
 	  (map (lambda (row)
 		 (let ((height  (apply max (map box-nlines row))))
-		   (map (lambda (element)    
+		   (map (lambda (element)
 			  (pad-box-centered-to-height height element))
 			row)))
 	       matrix-with-widended-columns))
@@ -891,7 +865,7 @@ USA.
     (shift-top-to
      (floor->exact (/ (box-nlines with-brackets) 2))
      with-brackets)))
-	 
+
 (define (tex:unparse-matrix uptable matrix-list)
   (let* ((displaystyle-rows
 	  (map (lambda (row)
@@ -908,14 +882,14 @@ USA.
 	  (glue-horiz (interpolate " \\cr \\cr " separated-rows))))
     #;
     (glue-horiz
-     (list "\\left\\{ \\matrix{ "
+     (list "\\left\\{ \\begin{matrix} "
 	   separated-columns
-	   "} \\right\\}"))
+	   "\\end{matrix} \\right\\}"))
     (glue-horiz
-     (list "\\left\\lgroup \\matrix{ "
+     (list "\\left\\lgroup \\begin{matrix} "
 	   separated-columns
-	   "} \\right\\rgroup"))))
-	 
+	   "\\end{matrix} \\right\\rgroup"))))
+
 (define (tex:unparse-up uptable matrix-list)
   (let* ((displaystyle-rows
 	  (map (lambda (row)
@@ -957,7 +931,7 @@ USA.
   `((parenthesize ,2d:parenthesize)
     (default ,unparse-default)
     (+ ,unparse-sum)
-    ;;need sum (in addition to +) as an internal hook for 
+    ;;need sum (in addition to +) as an internal hook for
     ;;process-sum
     (sum ,unparse-sum)
     (- ,unparse-difference)
@@ -993,7 +967,7 @@ USA.
   `((parenthesize ,tex:parenthesize)
     (default ,unparse-default)
     (+ ,unparse-sum)
-    ;;need sum (in addition to +) as an internal hook for 
+    ;;need sum (in addition to +) as an internal hook for
     ;;process-sum
     (sum ,unparse-sum)
     (- ,unparse-difference)
@@ -1042,7 +1016,7 @@ USA.
 
 		 ;;"Alpha" "Beta"
 		 "Gamma" "Delta"
-		 ;;"Epsilon" "Zeta" "Eta" 
+		 ;;"Epsilon" "Zeta" "Eta"
 		 "Theta"
 		 ;;"Iota" "Kappa"
 		 "Lambda"
@@ -1119,7 +1093,7 @@ USA.
 	   (let ((proc (assq 'default uptable)))
 	     ((cadr proc) uptable (map up exp)))))))
 
-	   
+
 (define (unparse-number n symbol-substs uptable)
   (cond ((and (real? n) (< n 0))
 	 (unparse `(- ,(- n)) symbol-substs uptable))
@@ -1358,14 +1332,16 @@ USA.
 
 (set! expression->tex-string
       (lambda (exp)
-	(let* ((one-line-box (unparse exp tex:symbol-substs tex:unparse-table))
-	       (tex-string
-		(with-output-to-string
-		  (lambda ()
-		    (for-each display
-			      (line-elements (car (box-lines one-line-box))))))))
-	  (string-append "\\boxit{ " "$$" tex-string "$$" "}"))))
+	(string-append "\\boxit{ " "$$" (no-boxit-tex exp) "$$" "}")))
 
+(set! no-boxit-tex (lambda (exp)
+  (let* ((one-line-box (unparse exp tex:symbol-substs tex:unparse-table))
+         (tex-string
+    (with-output-to-string
+      (lambda ()
+        (for-each display
+            (line-elements (car (box-lines one-line-box))))))))
+    tex-string)))
 #|
 ;;; Beal's folly.
 (set! expression->tex-string
@@ -1384,17 +1360,17 @@ USA.
 )       ;end let()
 
 
-;;;(define left-up-delimiter "\\left \\lceil \\matrix{ ")
-;;;(define right-up-delimiter "} \\right \\rceil")
-;;;(define left-down-delimiter "\\left \\lfloor \\matrix{ ")
-;;;(define right-down-delimiter "} \\right \\rfloor")
+;;;(define left-up-delimiter "\\left \\lceil \\begin{matrix} ")
+;;;(define right-up-delimiter "\\end{matrix} \\right \\rceil")
+;;;(define left-down-delimiter "\\left \\lfloor \\begin{matrix} ")
+;;;(define right-down-delimiter "\\end{matrix} \\right \\rfloor")
 
 
-(define left-up-delimiter "\\left( \\matrix{ ")
-(define right-up-delimiter "} \\right)")
+(define left-up-delimiter "\\left( \\begin{matrix} ")
+(define right-up-delimiter "\\end{matrix} \\right)")
 
-(define left-down-delimiter "\\left[ \\matrix{ ")
-(define right-down-delimiter "} \\right]")
+(define left-down-delimiter "\\left[ \\begin{matrix} ")
+(define right-down-delimiter "\\end{matrix} \\right]")
 
 
 #|

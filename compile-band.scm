@@ -23,15 +23,5 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
 USA.
 
 |#
-
-
-(load "open" scmutils-base-environment)
-
-;;(load "gray" scmutils-base-environment)
-
-
-(load "print" scmutils-base-environment)
-
-(load "exdisplay" scmutils-base-environment)
-
-(load "suppress-args" scmutils-base-environment)
+(load "load.scm")
+(disk-save "mechanics.com" "SICM")
