@@ -215,10 +215,11 @@ USA.
       (get-expression-tex expr simplifier)
       "'"
     )))
-  (run-shell-command apple-script-command)
-  ;; let's also print out the orignal
-  ;; expression
+  ;; first let's also print out
+  ;; the expression first
   (print-expression expr simplifier)
+  ;; then let's execute the latexit command
+  (run-shell-command apple-script-command)
 ))
 
 (define pe print-expression)
