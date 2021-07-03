@@ -18,4 +18,4 @@ for SRC in "${SRCS[@]}"; do
     install -d "${TARGET}"scmutils/"$(dirname "${SRC}")"
     cp -a "${SRC}" "${TARGET}"scmutils/"${SRC}"
 done
-cp -a mechanics.com "${TARGET}".
+cp -a ${1}.com "${TARGET}".
