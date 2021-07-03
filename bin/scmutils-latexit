@@ -13,7 +13,7 @@ on run argv
       set value of text area 1 of scroll area 1 of splitter group 1 of group 2 to latexExpr
       click radio button "Display" of radio group 1 of group 1 of group 2
       click button "LaTeX it!" of group 1 of group 2
-
+      -- suppress the output buy returning an empty string
       return ""
     end tell
   end tell
