@@ -172,7 +172,6 @@ USA.
   ;; (display "#;\n")
   (no-boxit-tex (*last-expression-printed*)))
 
-
 (define (print-expression-tex expr #!optional simplifier)
   (display (get-expression-tex expr simplifier)))
 
