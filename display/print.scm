@@ -176,36 +176,6 @@ USA.
 (define (print-expression-tex expr #!optional simplifier)
   (display (get-expression-tex expr simplifier)))
 
-; (define (get-escaped-expression-tex expr #!optional simplifier)
-;   (get-expression-tex expr simplifier))
-
-;; maybe write the file to the temp dir
-;; and run it with args?
-;; also delete the file after it's done
-;; or on error
-; (define (print-expression-latexit expr #!optional simplifier)
-;   (let ((apple-script-command
-;     (string-append
-;       "/usr/bin/env osascript"
-;       ;; apple script source starts
-;       " -e " "\"set appName to 'LaTeXiT'\""
-;       ;; need to escape chars before setting them to the var
-;       " -e " "set latexExpr to '" (get-escaped-expression-tex expr simplifier) "'\""
-;       " -e " "\"activate application appName\""
-;       " -e " "\"tell application 'System Events'\""
-;         " -e " "\"tell front window of (process appName)\""
-;           " -e " "\"set value of text area 1 of scroll area 1 of splitter group 1 of group 2 to latexExpr\""
-;           " -e " "\"click radio button 'Display' of radio group 1 of group 1 of group 2\""
-;           " -e " "\"click button 'LaTeX it\\\!' of group 1 of group 2\""
-;           ;;suppress output buy returning an empty string
-;           " -e " "\"return ''\""
-;         " -e " "\"end tell\""
-;       " -e " "\"end tell\""
-;       ;; apple script source ends
-;     )))
-;   (run-shell-command apple-script-command)
-; ))
-
 (define (print-expression-latexit expr #!optional simplifier)
   (let ((apple-script-command
     (string-append
