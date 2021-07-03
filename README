@@ -10,6 +10,10 @@
 ;;; then (disk-save "mechanics.com" "SICM")
 ;;; exit and run make
 ;;; then install.sh
+;;; also don't forget to install LaTeXiT
+;;; and put scmutils-latexit to you
+;;; PATH and make it executable
+;;; if you want be able to use pe-li function
 
 ;;;  Contributors to this library include:
 ;;;
