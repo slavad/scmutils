@@ -218,7 +218,7 @@ USA.
   (run-shell-command apple-script-command)
   ;; let's also print out the orignal
   ;; expression
-  (pe expr)
+  (print-expression expr simplifier)
 ))
 
 (define pe print-expression)
