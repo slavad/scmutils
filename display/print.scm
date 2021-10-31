@@ -175,9 +175,25 @@ USA.
 (define (print-expression-tex expr #!optional simplifier)
   (display (get-expression-tex expr simplifier)))
 
+(define (print-expression-latexit expr #!optional simplifier)
+  (let ((apple-script-command
+    (string-append
+      "/usr/bin/env scmutils-latexit"
+      " "
+      "'"
+      (get-expression-tex expr simplifier)
+      "'"
+    )))
+  ;; first let's also print out
+  ;; the expression first
+  (print-expression expr simplifier)
+  ;; then let's execute the latexit command
+  (run-shell-command apple-script-command)
+))
 
 (define pe print-expression)
 (define pet print-expression-tex)
+(define pe-li print-expression-latexit)
 (define se show-expression)
 
 

@@ -17,6 +17,8 @@ In order to  install the library do the following:
 2. then run `make`
 3. after that `make install`
 4. put `mechanics` from `bin` directory to your `PATH`
+5. also don't forget to install LaTeXiT  and put `scmutils-latexit`
+   from `bin` to you `PATH` if you want be able to use `pe-li` function
 
 ## Contributors to this library include:
 
